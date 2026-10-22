@@ -1,0 +1,23 @@
+[
+    {
+        "nome": "Federico",
+        "cognome": "Nadalini",
+        "paese": "Nogara",
+        "sesso": "f",
+        "anni": 10
+    },
+    {
+        "nome": "Nicolo Alessandro",
+        "cognome": "Ogliani Bellini",
+        "paese": "Revere",
+        "sesso": "m",
+        "anni": 67
+    },
+    {
+        "nome": "Lucian George",
+        "cognome": "Rivaroli Sava",
+        "paese": "Revere",
+        "sesso": "m",
+        "anni": 104
+    }
+]

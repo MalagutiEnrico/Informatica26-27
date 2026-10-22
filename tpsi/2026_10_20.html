@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <title>PROVA RUBRICA JSON</title>
+    </head>
+    <body>
+        <!--<div id="view-box" style="border: 1px solid black">
+            <button id="btnCaricaJSON">Carica JSON</button>
+            <button id="btnCaricaMaschi">Carica Maschi</button>\
+            <br>
+        </div>-->
+
+        <button id="btnCaricaJSON">Carica Intera Lista</button>
+        <button id="btnCaricaMaschi">Carica Utenti Maschi</button>
+        <br /><br />
+        Et&agrave; minima: <input type="text" id="anniRichiesti"><button id="btnEtaMinima">Et&agrave; maggiore o uguale di...</button>
+        <br /><br />
+        <div id="view-box" style="border: solid 1px rgb(200,0,0);">Seleziona una opzione</div>
+
+        <script>
+            async function leggiRubrica(){
+                /*viene eseguita una http request al server per la risorsa JSON
+                Il contenuto viene restituito tramite promise (ancora inutilizzabile)*/
+                const promise = await fetch("2026_10_20.json");
+
+                //Per utilizzare i dati bisogna fare il parsing JSON
+                const vettRubrica = await promise.json();
+
+                //Imposto vb come riferimento alla div
+                let vb = document.querySelector("#view-box");
+
+                vb.innerHTML += "Numero di JSON ricevuti: " + vettRubrica.length + "<br/>";
+
+                for(let i = 0; i<vettRubrica.length; i++){
+                    vb.innerHTML += vettRubrica[i].nome + " " + vettRubrica[i].cognome + " " + vettRubrica[i].paese + "<br/>";
+                }
+            }
+
+            async function caricaListaMaschi(){
+                const promise = await fetch("2026_10_20.json");
+                const vettMaschi = await promise.json();
+                let vb = document.querySelector("#view-box");
+
+                vb.innerHTML += "Numero di JSON maschi ricevuti: " + vettMaschi.length + "<br/>";
+
+                for(let i = 0; i<vettMaschi.length; i++){
+                    if(vettMaschi[i].sesso == "m")
+                        vb.innerHTML += vettMaschi[i].nome + " " + vettMaschi[i].cognome + " " + vettMaschi[i].paese + "<br/>";
+                }
+            }
+
+            async function caricaEtaMinima(){
+                const promise = await fetch("2026_10_20.json");
+                const vettEtaMinima = await promise.json();
+                let vb = document.querySelector("#view-box");
+
+                for(let i = 0; i<vettEtaMinima.length; i++){
+                    if(vettEtaMinima[i].anni > document.getElementById("anniRichiesti"))
+                        vb.innerHTML += vettEtaMinima[i].nome + " " + vettEtaMinima[i].cognome + " " + vettEtaMinima[i].paese + "<br/>";
+                }
+            }
+            
+            let btnCaricaTutto = document.querySelector("#btnCaricaJSON");
+            btnCaricaTutto.addEventListener('click', leggiRubrica);         //carica un evento al click
+            //btnCaricaTutto.onclick = leggiRubrica;  inusata perchè sovrascrive tutti gli eventi
+
+            let btnCaricaMaschi = document.querySelector("#btnCaricaMaschi");
+            btnCaricaMaschi.addEventListener('click', caricaListaMaschi);
+
+            let btnEtaMinima = document.querySelector("#btnEtaMinima");
+            btnEtaMinima.addEventListener('click', caricaEtaMinima);
+        </script>
+    </body>
+</html>
