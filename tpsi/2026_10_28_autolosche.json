@@ -1,0 +1,82 @@
+[
+    {
+        "Marca": "FIAT",
+        "Modello": "Punto",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Modena",
+        "Uniproprietario": "true",
+        "Kilometraggio": 380000
+    },
+    {
+        "Marca": "FIAT",
+        "Modello": "Panda",
+        "Anno_Immatricolazione": 1989,
+        "Provincia": "Mantova",
+        "Uniproprietario": "false",
+        "Kilometraggio": 400000
+    },
+    {
+        "Marca": "FIAT",
+        "Modello": "500L",
+        "Anno_Immatricolazione": 2021,
+        "Provincia": "Modena",
+        "Uniproprietario": "true",
+        "Kilometraggio": 95000
+    },
+    {
+        "Marca": "FIAT",
+        "Modello": "Tipo",
+        "Anno_Immatricolazione": 2019,
+        "Provincia": "Verona",
+        "Uniproprietario": "true",
+        "Kilometraggio": 120000
+    },
+    {
+        "Marca": "FIAT",
+        "Modello": "Seicento",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Bologna",
+        "Uniproprietario": "false",
+        "Kilometraggio": 38000
+    },
+    {
+        "Marca": "ALFA ROMEO",
+        "Modello": "Mito",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Modena",
+        "Uniproprietario": "false",
+        "Kilometraggio": 50000
+    },
+    {
+        "Marca": "ALFA ROMEO",
+        "Modello": "Brera",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Modena",
+        "Uniproprietario": "false",
+        "Kilometraggio": 300000
+    },
+    {
+        "Marca": "ALFA ROMEO",
+        "Modello": "GIULIA",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Napoli",
+        "Uniproprietario": "false",
+        "Kilometraggio": 380000
+    },
+    {
+        "Marca": "BMW",
+        "Modello": "M3 GTR Competition",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Modena",
+        "Uniproprietario": "true",
+        "Kilometraggio": 380000
+    },
+    {
+        "Marca": "VOLKSWAGEN",
+        "Modello": "Golf GTI",
+        "Anno_Immatricolazione": 2010,
+        "Provincia": "Modena",
+        "Uniproprietario": "true",
+        "Kilometraggio": 380000
+    }
+]

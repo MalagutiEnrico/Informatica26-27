@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GESTIONE AUTO LOSCHE</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    </head>
+    <body class="text-center">
+        <br><br><br>
+        <h1>GESTIONE AUTO LOSCHE</h1><br><br>
+        <h3>Effettua una ricerca su auto losche</h3><br><br>
+        <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <button type="button" id="btnCaricaJSON" class="btn-solid theme-primary">Mostra tutte auto losche</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn-solid theme-primary">Mostra tutte auto uniproprietarie</button>
+            </div>
+        </div>
+        <br><br>
+        <h5>Ricerca autovetture per Provincia</h5><br><br>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Provincia">
+            </div>
+            <div class="col">
+                <button type="button" class="btn-solid theme-primary">Mostra</button>
+            </div>
+        </div>
+        <br><br>
+        <h5>Ricerca autovetture per Marca</h5><br><br>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Marca">
+            </div>
+            <div class="col">
+                <button type="button" class="btn-solid theme-primary">Mostra</button>
+            </div>
+        </div>
+        <br><br>
+        <h5>Ricerca autovetture per Anno Immatricolazione</h5><br><br>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci l'anno minimo">
+                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci l'anno massimo">
+            </div>
+            <div class="col">
+                <button type="button" class="btn-solid theme-primary">Mostra</button>
+            </div>
+        </div>
+        <div class="container" id="view-box">
+            
+        </div>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+        <script>
+            async function leggiAuto(){
+                const promise = await fetch("2026_10_28_autolosche.json");
+                const vettAuto = await promise.json();
+                let auto = document.querySelector("#view-box");
+                auto.innerHTML += "<h3>VISUALIZZAZIONE TUTTE LE AUTO</h3><BR>";
+                for(let i = 0; i<vettAuto.length; i++){
+                    auto.innerHTML += vettAuto[i].Marca + " " + vettAuto[i].Modello + " " + vettAuto[i].Anno_Immatricolazione + " " + vettAuto[i].Provincia + " " + vettAuto[i].Uniproprietario +" " + vettAuto[i].Kilometraggio + "<br/>";
+                }
+            }
+
+            let btnCaricaAuto = document.querySelector("#btnCaricaJSON");
+            btnCaricaAuto.addEventListener('click', leggiAuto);
+        </script>
+    </body>
+</html>
