@@ -32,7 +32,7 @@
                 echo('
                 <div class="container-fluid">
                     <h1>SCRIVI LA TABELLINA</h1>
-                    <form>
+                    <form action="2026_10_22_03.php" method="get">
                         <div class="mb-3">
                             <label for="numero" class="form-label">Inserisci il numero:</label>
                             <input type="text" class="form-control" name="numero" id="numero" placeholder="inserisci il numero">
