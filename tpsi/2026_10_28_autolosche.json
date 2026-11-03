@@ -3,7 +3,7 @@
         "Marca": "FIAT",
         "Modello": "Punto",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "true",
         "Kilometraggio": 380000
     },
@@ -11,7 +11,7 @@
         "Marca": "FIAT",
         "Modello": "Panda",
         "Anno_Immatricolazione": 1989,
-        "Provincia": "Mantova",
+        "Provincia": "MN",
         "Uniproprietario": "false",
         "Kilometraggio": 400000
     },
@@ -19,7 +19,7 @@
         "Marca": "FIAT",
         "Modello": "500L",
         "Anno_Immatricolazione": 2021,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "true",
         "Kilometraggio": 95000
     },
@@ -27,7 +27,7 @@
         "Marca": "FIAT",
         "Modello": "Tipo",
         "Anno_Immatricolazione": 2019,
-        "Provincia": "Verona",
+        "Provincia": "VR",
         "Uniproprietario": "true",
         "Kilometraggio": 120000
     },
@@ -35,7 +35,7 @@
         "Marca": "FIAT",
         "Modello": "Seicento",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Bologna",
+        "Provincia": "BO",
         "Uniproprietario": "false",
         "Kilometraggio": 38000
     },
@@ -43,7 +43,7 @@
         "Marca": "ALFA ROMEO",
         "Modello": "Mito",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "false",
         "Kilometraggio": 50000
     },
@@ -51,7 +51,7 @@
         "Marca": "ALFA ROMEO",
         "Modello": "Brera",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "false",
         "Kilometraggio": 300000
     },
@@ -59,7 +59,7 @@
         "Marca": "ALFA ROMEO",
         "Modello": "GIULIA",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Napoli",
+        "Provincia": "NA",
         "Uniproprietario": "false",
         "Kilometraggio": 380000
     },
@@ -67,7 +67,7 @@
         "Marca": "BMW",
         "Modello": "M3 GTR Competition",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "true",
         "Kilometraggio": 380000
     },
@@ -75,7 +75,7 @@
         "Marca": "VOLKSWAGEN",
         "Modello": "Golf GTI",
         "Anno_Immatricolazione": 2010,
-        "Provincia": "Modena",
+        "Provincia": "MO",
         "Uniproprietario": "true",
         "Kilometraggio": 380000
     }

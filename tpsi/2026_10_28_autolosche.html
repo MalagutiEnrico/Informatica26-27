@@ -13,30 +13,30 @@
         <div class="container text-center">
         <div class="row">
             <div class="col">
-                <button type="button" id="btnCaricaJSON" class="btn-solid theme-primary">Mostra tutte auto losche</button>
+                <button type="button" id="btnCaricaAuto" class="btn-solid theme-primary">Mostra tutte auto losche</button>
             </div>
             <div class="col">
-                <button type="button" class="btn-solid theme-primary">Mostra tutte auto uniproprietarie</button>
+                <button type="button" id="btnCaricaAutoUniproprietarie" class="btn-solid theme-primary">Mostra tutte auto uniproprietarie</button>
             </div>
         </div>
         <br><br>
         <h5>Ricerca autovetture per Provincia</h5><br><br>
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Provincia">
+                <input type="text" id="valProvincia" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Provincia">
             </div>
             <div class="col">
-                <button type="button" class="btn-solid theme-primary">Mostra</button>
+                <button type="button" id="btnCaricaAutoProvincia" class="btn-solid theme-primary">Mostra</button>
             </div>
         </div>
         <br><br>
         <h5>Ricerca autovetture per Marca</h5><br><br>
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Marca">
+                <input type="text" id="valMarca" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Marca">
             </div>
             <div class="col">
-                <button type="button" class="btn-solid theme-primary">Mostra</button>
+                <button type="button" id="btnCaricaAutoMarca" class="btn-solid theme-primary">Mostra</button>
             </div>
         </div>
         <br><br>
@@ -60,14 +60,97 @@
                 const promise = await fetch("2026_10_28_autolosche.json");
                 const vettAuto = await promise.json();
                 let auto = document.querySelector("#view-box");
-                auto.innerHTML += "<h3>VISUALIZZAZIONE TUTTE LE AUTO</h3><BR>";
+                auto.innerHTML = "";
+                auto.innerHTML += "<h3>VISUALIZZAZIONE TUTTE LE AUTO</h3><br>";
+                let strTabella;
+                strTabella += "<table class=\"table table-striped\">";
+                strTabella += "<tbody>";
                 for(let i = 0; i<vettAuto.length; i++){
-                    auto.innerHTML += vettAuto[i].Marca + " " + vettAuto[i].Modello + " " + vettAuto[i].Anno_Immatricolazione + " " + vettAuto[i].Provincia + " " + vettAuto[i].Uniproprietario +" " + vettAuto[i].Kilometraggio + "<br/>";
+                    strTabella += "<tr>";
+                    strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
+                    strTabella += "</tr>";
                 }
+                strTabella += "</tbody>";
+                strTabella += "</table>";
+                auto.innerHTML += strTabella;
             }
 
-            let btnCaricaAuto = document.querySelector("#btnCaricaJSON");
+            async function leggiAutoUniproprietarie(){
+                const promise = await fetch("2026_10_28_autolosche.json");
+                const vettAuto = await promise.json();
+                let auto = document.querySelector("#view-box");
+                auto.innerHTML = "";
+                auto.innerHTML += "<h3>VISUALIZZAZIONE TUTTE LE AUTO UNIPROPRIETARIE</h3>"
+                let strTabella;
+                strTabella += "<table class=\"table table-striped\">";
+                strTabella += "<tbody>";
+                for(let i = 0; i<vettAuto.length; i++){
+                    if(vettAuto[i].Uniproprietario == "true"){
+                        strTabella += "<tr>";
+                        strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
+                        strTabella += "</tr>";
+                    }
+                }
+                strTabella += "</tbody>";
+                strTabella += "</table>";
+                auto.innerHTML += strTabella;
+            }
+
+            async function leggiAutoProvincia(){
+                const promise = await fetch("2026_10_28_autolosche.json");
+                const vettAuto = await promise.json();
+                let auto = document.querySelector("#view-box");
+                auto.innerHTML = "";
+                auto.innerHTML += "<h3>VISUALIZZAZIONE AUTO SECONDO PROVINCIA</h3>"
+                let provincia = document.getElementById("valProvincia").value;
+                let strTabella;
+                strTabella += "<table class=\"table table-striped\">";
+                strTabella += "<tbody>";
+                for(let i = 0; i<vettAuto.length; i++){
+                    if(vettAuto[i].Provincia == provincia){
+                        strTabella += "<tr>";
+                        strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
+                        strTabella += "</tr>";
+                    }
+                }
+                strTabella += "</tbody>";
+                strTabella += "</table>";
+                auto.innerHTML += strTabella;
+            }
+
+            async function leggiAutoMarca(){
+                const promise = await fetch("20026_10_28_autolosche.json");
+                const vettAuto = await promise.json();
+                let auto = document.querySelector("#view-box");
+                auto.innerHTML = "";
+                auto.innerHTML += "<h3>VISUALIZZAZIONE AUTO SECONDO MARCA</h3>"
+                let marca = document.getElementById("valMarca").value;
+                let strTabella;
+                strTabella += "<table class=\"table table-striped\">";
+                strTabella += "<tbody>";
+                for(let i = 0; i<vettAuto.length; i++){
+                    if(vettAuto[i].Marca == marca){
+                        strTabella += "<tr>";
+                        strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
+                        strTabella += "</tr>";
+                    }
+                }
+                strTabella += "</tbody>";
+                strTabella += "</table>";
+                auto.innerHTML += strTabella;
+            }
+
+            let btnCaricaAuto = document.querySelector("#btnCaricaAuto");
             btnCaricaAuto.addEventListener('click', leggiAuto);
+
+            let btnCaricaAutoUniproprietarie = document.querySelector("#btnCaricaAutoUniproprietarie");
+            btnCaricaAutoUniproprietarie.addEventListener('click', leggiAutoUniproprietarie);
+
+            let btnCaricaAutoProvincia = document.querySelector("#btnCaricaAutoProvincia");
+            btnCaricaAutoProvincia.addEventListener('click', leggiAutoProvincia);
+
+            let btnCaricaAutoMarca = document.querySelector("#btnCaricaAutoMarca");
+            btnCaricaAutoMarca.addEventListener('click', leggiAutoMarca);
         </script>
     </body>
 </html>
