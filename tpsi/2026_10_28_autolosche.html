@@ -23,7 +23,7 @@
         <h5>Ricerca autovetture per Provincia</h5><br><br>
         <div class="row">
             <div class="col">
-                <input type="text" id="valProvincia" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Provincia">
+                <input type="text" id="valProvincia" class="form-control" placeholder="Inserisci la Provincia">
             </div>
             <div class="col">
                 <button type="button" id="btnCaricaAutoProvincia" class="btn-solid theme-primary">Mostra</button>
@@ -33,7 +33,7 @@
         <h5>Ricerca autovetture per Marca</h5><br><br>
         <div class="row">
             <div class="col">
-                <input type="text" id="valMarca" class="form-control" id="fieldTextDesc" placeholder="Inserisci la Marca">
+                <input type="text" id="valMarca" class="form-control" placeholder="Inserisci la Marca">
             </div>
             <div class="col">
                 <button type="button" id="btnCaricaAutoMarca" class="btn-solid theme-primary">Mostra</button>
@@ -43,11 +43,11 @@
         <h5>Ricerca autovetture per Anno Immatricolazione</h5><br><br>
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci l'anno minimo">
-                <input type="text" class="form-control" id="fieldTextDesc" placeholder="Inserisci l'anno massimo">
+                <input type="text" id="valAnnoMin" class="form-control" placeholder="Inserisci l'anno minimo">
+                <input type="text" id="valAnnoMax" class="form-control" placeholder="Inserisci l'anno massimo">
             </div>
             <div class="col">
-                <button type="button" class="btn-solid theme-primary">Mostra</button>
+                <button type="button" id="btnCaricaAutoAnno" class="btn-solid theme-primary">Mostra</button>
             </div>
         </div>
         <div class="container" id="view-box">
@@ -103,6 +103,7 @@
                 auto.innerHTML = "";
                 auto.innerHTML += "<h3>VISUALIZZAZIONE AUTO SECONDO PROVINCIA</h3>"
                 let provincia = document.getElementById("valProvincia").value;
+                provincia = provincia.toUpperCase();
                 let strTabella;
                 strTabella += "<table class=\"table table-striped\">";
                 strTabella += "<tbody>";
@@ -119,17 +120,41 @@
             }
 
             async function leggiAutoMarca(){
-                const promise = await fetch("20026_10_28_autolosche.json");
+                const promise = await fetch("2026_10_28_autolosche.json");
                 const vettAuto = await promise.json();
                 let auto = document.querySelector("#view-box");
                 auto.innerHTML = "";
                 auto.innerHTML += "<h3>VISUALIZZAZIONE AUTO SECONDO MARCA</h3>"
                 let marca = document.getElementById("valMarca").value;
+                marca = marca.toUpperCase();
                 let strTabella;
                 strTabella += "<table class=\"table table-striped\">";
                 strTabella += "<tbody>";
                 for(let i = 0; i<vettAuto.length; i++){
                     if(vettAuto[i].Marca == marca){
+                        strTabella += "<tr>";
+                        strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
+                        strTabella += "</tr>";
+                    }
+                }
+                strTabella += "</tbody>";
+                strTabella += "</table>";
+                auto.innerHTML += strTabella;
+            }
+
+            async function leggiAutoAnno(){
+                const promise = await fetch("2026_10_28_autolosche.json");
+                const vettAuto = await promise.json();
+                let auto = document.querySelector("#view-box");
+                let annoMin = parseInt(document.getElementById("valAnnoMin").value);
+                let annoMax = parseInt(document.getElementById("valAnnoMax").value);
+                auto.innerHTML = "";
+                auto.innerHTML += "<h3>VISUALIZZAZIONE AUTO CON DATA COMPRESA</h3>";
+                let strTabella;
+                strTabella += "<table class=\"table table-striped\">";
+                strTabella += "<tbody>";
+                for(let i = 0; i<vettAuto.length; i++){
+                    if(vettAuto[i].Anno_Immatricolazione >= annoMin && vettAuto[i].Anno_Immatricolazione <= annoMax){
                         strTabella += "<tr>";
                         strTabella += "<td>" + vettAuto[i].Marca + "</td><td>" + vettAuto[i].Modello + "</td><td>" + vettAuto[i].Anno_Immatricolazione + "</td><td>" + vettAuto[i].Provincia + "</td><td>" + vettAuto[i].Uniproprietario + "</td><td>" + vettAuto[i].Kilometraggio + "</td>";
                         strTabella += "</tr>";
@@ -151,6 +176,9 @@
 
             let btnCaricaAutoMarca = document.querySelector("#btnCaricaAutoMarca");
             btnCaricaAutoMarca.addEventListener('click', leggiAutoMarca);
+
+            let btnCaricaAutoAnno = document.querySelector("#btnCaricaAutoAnno");
+            btnCaricaAutoAnno.addEventListener('click', leggiAutoAnno);
         </script>
     </body>
 </html>
