@@ -1,0 +1,32 @@
+[
+    {
+        "nome": "Francesco",
+        "cognome": "Bagnaia",
+        "team": "Ducati",
+        "numero": 63
+    },
+    {
+        "nome": "Marc",
+        "cognome": "Marquez",
+        "team": "Ducati",
+        "numero": 93
+    },
+    {
+        "nome": "Marco",
+        "cognome": "Bezzecchi",
+        "team": "Aprilia",
+        "numero": 72
+    },
+    {
+        "nome": "Fabio",
+        "cognome": "Digiannantonio",
+        "team": "VR46",
+        "numero": 49
+    },
+    {
+        "nome": "Jorge",
+        "cognome": "Martin",
+        "team": "Aprilia",
+        "numero": 89
+    }
+]

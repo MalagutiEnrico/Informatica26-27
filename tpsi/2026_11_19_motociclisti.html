@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MOTOCICLISTI</title>
+    </head>
+    <body>
+        <h1>MOTOCICLISTI NEL MONDIALE</h1>
+        <button id="btnCaricaJson">carica piloti</button>
+        <div id="risultato"></div>
+
+        <script>
+            async function caricaJson(){
+                const promise = await fetch("2026_11_19_motociclisti.json");
+                const vettMotociclisti = await promise.json();
+
+                let output = document.querySelector("#risultato");
+                output.innerHTML = "";
+
+                output.innerHTML = "MOTOCICLISTI NEL MONDIALE <br />";
+                for(let i = 0; i<vettMotociclisti.length; i++){
+                    output.innerHTML += vettMotociclisti[i].nome + " " + vettMotociclisti[i].cognome + " " + vettMotociclisti[i].team + " " + vettMotociclisti[i].numero + "<br />";
+                }
+            }
+
+            let btnCaricaJson = document.querySelector("#btnCaricaJson");
+            btnCaricaJson.addEventListener('click', caricaJson);
+        </script>
+    </body>
+</html>
