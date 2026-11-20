@@ -22,7 +22,7 @@
                     <div class="drawer-body">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="2026_11_19_Medico.php?scelta=visualizzaAuto">Visualizza tutti i medici</a>
+                                <a class="nav-link active" aria-current="page" href="2026_11_19_Medico.php?scelta=visualizzaMedici">Visualizza tutti i medici</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Inserisci Medico</a>
@@ -46,9 +46,39 @@
                         $resultSet = $db->query($sql);
                         $db->close();
                         ?>
-                }
-            ?>
 
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NOME</th>
+                                    <th scope="col">COGNOME</th>
+                                    <th scope="col">CODICE FISCALE</th>
+                                    <th scope="col">NUMERO ALBO</th>
+                                    <th scope="col">TELEFONO</th>
+                                    <th scope="col">EMAIL</th>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                while($record = $resultSet->fetch_assoc()){
+                                    echo('<tr>
+                                    <th scope="row">'.$record['idMedico'].'</th>
+                                    <td>'.$record['nome'].'</td>
+                                    <td>'.$record['cognome'].'</td>
+                                    <td>'.$record['codiceFiscale'].'</td>
+                                    <td>'.$record['numeroAlbo'].'</td>
+                                    <td>'.$record['telefono'].'</td>
+                                    <td>'.$record['email'].'</td>
+                                    </tr>');
+                                }
+
+                                ?>
+                            </tbody>
+                        </table>
+                        <?php
+                }
+                ?>
         </div>
 
         <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
