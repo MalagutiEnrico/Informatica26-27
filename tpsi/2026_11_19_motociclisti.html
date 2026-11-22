@@ -1,29 +1,226 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <title>MOTOCICLISTI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PROVA VERIFICA</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
     </head>
     <body>
-        <h1>MOTOCICLISTI NEL MONDIALE</h1>
-        <button id="btnCaricaJson">carica piloti</button>
-        <div id="risultato"></div>
+        <h1 style="text-align: center;">GESTIONE MOTOCICLISTI</h1>
+        <br><br>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-3">
+                        <h3>Visualizza Piloti</h3>
+                        <br><br>
+                        <button type="button" class="btn-outline theme-primary" id="btnCaricaPiloti" name="btnCaricaPiloti">Carica archivio JSON</button>
+                </div>
+                <div class="col-3">
+                    <h3>Cerca pilota per team</h3>
+                    <br><br>
+                    <div class="form-group mb3">
+                        <label for="sizesInputDefault" class="form-label">Inserisci Team</label>
+                        <input class="form-control" id="textCostruttori" name="textCostruttori" type="text" placeholder="es. Ducati">
+                        <button type="button" class="btn-outline theme-primary" id="btnCercaCostruttori" name="btnCercaCostruttori">Cerca</button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h3>Cerca pilota per intervallo di titoli vinti</h3>
+                    <br><br>
+                    <div class="form-group mb3">
+                        <label for="sizesInputDefault" class="form-label">Inserisci numero minimo</label>
+                        <input class="form-control" id="textMin" name="textMin" type="text">
+                        
+                        <label for="sizesInputDefault" class="form-label">Inserisci numero massimo</label>
+                        <input class="form-control" id="textMax" name="textMax" type="text">
+
+                        <button type="button" class="btn-outline theme-primary" id="btnCercaMondiali" name="btnCercaMondiali">Cerca</button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h3>Cerca Pilota per Numero</h3>
+                    <br><br>
+                    <div class="form-group mb3">
+                        <label for="sizesInputDefault" class="form-label">Inserisci Numero</label>
+                        <input class="form-control" id="textNumero" name="textNumero" type="text">
+                        <button type="button" class="btn-outline theme-primary" id="btnCercaNumero" name="btnCercaNumero">Cerca</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="view-box" class="text-center"></div>
 
         <script>
-            async function caricaJson(){
-                const promise = await fetch("2026_11_19_motociclisti.json");
+            async function caricaMotociclisti(){
+                const promise = await fetch("2026_11_22provaverifica.json");
                 const vettMotociclisti = await promise.json();
 
-                let output = document.querySelector("#risultato");
-                output.innerHTML = "";
+                let vb = document.querySelector("#view-box");
+                vb.innerHTML = "";
 
-                output.innerHTML = "MOTOCICLISTI NEL MONDIALE <br />";
-                for(let i = 0; i<vettMotociclisti.length; i++){
-                    output.innerHTML += vettMotociclisti[i].nome + " " + vettMotociclisti[i].cognome + " " + vettMotociclisti[i].team + " " + vettMotociclisti[i].numero + "<br />";
+                let strtable = '<table class="table table-striped">';
+                strtable += '<thead><tr>';
+                strtable += '<td scope="col">#</td>';
+                strtable += '<td scope="col">Nome</td>';
+                strtable += '<td scope="col">Cognome</td>';
+                strtable += '<td scope="col">Team</td>';
+                strtable += '<td scope="col">Numero</td>';
+                strtable += '<td scope="col">Titoli Vinti</td>';
+                strtable += '</tr></thead>';
+
+                strtable += '<tbody>';
+                for(let i=0; i<vettMotociclisti.length; i++){
+                    strtable += '<tr>';
+                    strtable += '<td scope="row">' + (i+1) + '</td>';
+                    strtable += '<td scope="row">' + vettMotociclisti[i].nome + '</td>';
+                    strtable += '<td scope="row">' + vettMotociclisti[i].cognome + '</td>';
+                    strtable += '<td scope="row">' + vettMotociclisti[i].team + '</td>';
+                    strtable += '<td scope="row">' + vettMotociclisti[i].numero + '</td>';
+                    strtable += '<td scope="row">' + vettMotociclisti[i].titoli + '</td>';
+                    strtable += '</td>';
+                }
+                strtable += '</tbody></table>';
+                vb.innerHTML += "<h3>Elenco Piloti</h3><br><br><br>";
+                vb.innerHTML += strtable;
+            }
+
+            async function cercaTeam(){
+                const promise = await fetch("2026_11_22provaverifica.json");
+                const vettoreMotociclisti = await promise.json();
+
+                let vb = document.querySelector("#view-box");
+                vb.innerHTML = "";
+
+                let team = document.querySelector("#textCostruttori").value;
+                let cnt=0;
+
+                let strtable = '<table class="table table-striped">';
+                strtable += '<thead><tr>';
+                strtable += '<td scope="col">#</td>';
+                strtable += '<td scope="col">Nome</td>';
+                strtable += '<td scope="col">Cognome</td>';
+                strtable += '<td scope="col">Team</td>';
+                strtable += '<td scope="col">Numero</td>';
+                strtable += '<td scope="col">Titoli Vinti</td>';
+                strtable += '</tr></thead>';
+
+                for(let i=0; i<vettoreMotociclisti.length; i++){
+                    if(vettoreMotociclisti[i].team == team){
+                        strtable += '<tbody><tr>';
+                        strtable += '<td scope="row">' + (cnt+1) + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].nome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].cognome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].team + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].numero + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].titoli + '</td>';
+                        strtable += '</tr>';
+                        cnt++;
+                    }
+                }
+                strtable += '<tbody></table>';
+                if(cnt == 0){
+                    vb.innerHTML += '<h3>Non sono stati trovati piloti con team ' + team + '</h3>';
+                }
+                else{
+                    vb.innerHTML += '<h3>Elenco Piloti con team ' + team + '</h3><br><br><br>';
+                    vb.innerHTML += strtable;
                 }
             }
 
-            let btnCaricaJson = document.querySelector("#btnCaricaJson");
-            btnCaricaJson.addEventListener('click', caricaJson);
+            async function cercaTitoli(){
+                const promise = await fetch("2026_11_22provaverifica.json");
+                const vettoreMotociclisti = await promise.json();
+
+                let vb = document.querySelector("#view-box");
+                vb.innerHTML = "";
+                let min = document.querySelector("#textMin").value;
+                let max = document.querySelector("#textMax").value;
+                let cnt = 0;
+
+                let strtable = '<table class="table table-striped">';
+                strtable += '<thead><tr>';
+                strtable += '<td scope="col">#</td>';
+                strtable += '<td scope="col">Nome</td>';
+                strtable += '<td scope="col">Cognome</td>';
+                strtable += '<td scope="col">Team</td>';
+                strtable += '<td scope="col">Numero</td>';
+                strtable += '<td scope="col">Titoli Vinti</td>';
+                strtable += '</tr></thead>';
+
+                strtable += '<tbody>';
+                for(let i=0; i<vettoreMotociclisti.length; i++){
+                    if(vettoreMotociclisti[i].titoli >= min && vettoreMotociclisti[i].titoli <= max){
+                        cnt++;
+                        strtable += '<tr>';
+                        strtable += '<td scope="row">' + cnt + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].nome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].cognome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].team + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].numero + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].titoli + '</td>';
+                        strtable += '</tr>';
+                    }
+                }
+                if(cnt == 0){
+                    vb.innerHTML += '<h3>Nessun pilota presente in questo intervallo</h3>';
+                }
+                else{
+                    strtable += '</tbody></table>';
+                    vb.innerHTML += strtable;
+                }
+            }
+
+            async function cercaNumero(){
+                const promise = await fetch("2026_11_22provaverifica.json");
+                const vettoreMotociclisti = await promise.json();
+
+                let vb = document.querySelector("#view-box");
+                vb.innerHTML = "";
+
+                let cnt=0;
+                let numero = document.querySelector("#textNumero").value;
+
+                let strtable = '<table class="table table-striped">';
+                strtable += '<thead><tr>';
+                strtable += '<td scope="col">#</td>';
+                strtable += '<td scope="col">Nome</td>';
+                strtable += '<td scope="col">Cognome</td>';
+                strtable += '<td scope="col">Team</td>';
+                strtable += '<td scope="col">Numero</td>';
+                strtable += '<td scope="col">Titoli Vinti</td>';
+                strtable += '</tr></thead><tbody>';
+
+                for(let i=0; i<vettoreMotociclisti.length; i++){
+                    if(vettoreMotociclisti[i].numero == numero){
+                        cnt++;
+                        strtable += '<tr>';
+                        strtable += '<td scope="row">' + cnt + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].nome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].cognome + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].team + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].numero + '</td>';
+                        strtable += '<td scope="row">' + vettoreMotociclisti[i].titoli + '</td>';
+                        strtable += '</tr>';
+                    }
+                }
+                strtable += '</tbody></table>';
+                vb.innerHTML += strtable;
+            }
+
+            let btnCaricaPiloti = document.querySelector("#btnCaricaPiloti");
+            btnCaricaPiloti.addEventListener('click', caricaMotociclisti);
+
+            let btnCercaCostruttori = document.querySelector("#btnCercaCostruttori");
+            btnCercaCostruttori.addEventListener('click', cercaTeam); 
+
+            let btnCercaMondiali = document.querySelector("#btnCercaMondiali");
+            btnCercaMondiali.addEventListener('click', cercaTitoli);
+
+            let btnCercaNumero = document.querySelector("#btnCercaNumero");
+            btnCercaNumero.addEventListener('click', cercaNumero);
         </script>
+
+        <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
     </body>
 </html>
