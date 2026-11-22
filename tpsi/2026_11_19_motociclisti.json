@@ -3,30 +3,35 @@
         "nome": "Francesco",
         "cognome": "Bagnaia",
         "team": "Ducati",
-        "numero": 63
+        "numero": 63,
+        "titoli": 3
     },
     {
         "nome": "Marc",
         "cognome": "Marquez",
         "team": "Ducati",
-        "numero": 93
+        "numero": 93,
+        "titoli": 10
     },
     {
         "nome": "Marco",
         "cognome": "Bezzecchi",
         "team": "Aprilia",
-        "numero": 72
+        "numero": 72,
+        "titoli": 0
     },
     {
         "nome": "Fabio",
         "cognome": "Digiannantonio",
         "team": "VR46",
-        "numero": 49
+        "numero": 49,
+        "titoli": 0
     },
     {
         "nome": "Jorge",
         "cognome": "Martin",
         "team": "Aprilia",
-        "numero": 89
+        "numero": 89,
+        "titoli": 1
     }
 ]
