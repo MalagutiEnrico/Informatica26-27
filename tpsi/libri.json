@@ -1,0 +1,42 @@
+[
+    {
+        "Id": 1,
+        "Titolo": "Da Vinci Code",
+        "Autore": "Dan Brown",
+        "Prezzo": 14.99,
+        "Pagine": 465,
+        "Anno": 2003
+    },
+    {
+        "Id": 2,
+        "Titolo": "Angels and Demons",
+        "Autore": "Dan Brown",
+        "Prezzo": 17.00,
+        "Pagine": 380,
+        "Anno": 2006
+    },
+    {
+        "Id": 3,
+        "Titolo": "IT",
+        "Autore": "Stephen King",
+        "Prezzo": 10.99,
+        "Pagine": 485,
+        "Anno": 2000
+    },
+    {
+        "Id": 4,
+        "Titolo": "Bones",
+        "Autore": "Kethy Reichs",
+        "Prezzo": 9.50,
+        "Pagine": 245,
+        "Anno": 2009
+    },
+    {
+        "Id": 5,
+        "Titolo": "Inferno",
+        "Autore": "Dan Brown",
+        "Prezzo": 12.99,
+        "Pagine": 410,
+        "Anno": 2009
+    }
+]
